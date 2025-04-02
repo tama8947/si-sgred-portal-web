@@ -18,6 +18,8 @@ export interface Link {
   isExternal?: boolean;
   isButtonLink?: boolean;
   type?: "PRIMARY" | "SECONDARY";
+  isMenuDropdown?: boolean;
+  dropdownItems: { data: Link[] };
 }
 
 export interface GlobalPageHeader {

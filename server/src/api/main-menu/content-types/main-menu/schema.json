@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_menus",
+  "info": {
+    "singularName": "main-menu",
+    "pluralName": "main-menus",
+    "displayName": "MainMenu",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "MainMenuItems": {
+      "type": "dynamiczone",
+      "components": [
+        "menu.link",
+        "menu.dropdown"
+      ]
+    },
+    "tittle": {
+      "type": "string"
+    }
+  }
+}

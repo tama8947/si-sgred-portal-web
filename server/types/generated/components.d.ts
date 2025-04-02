@@ -24,6 +24,19 @@ export interface BlocksContentWithImage extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksDisplayCarrusel extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_display_carrusels';
+  info: {
+    displayName: 'Display Carrusel';
+  };
+  attributes: {
+    Carrusel: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
 export interface BlocksFaqs extends Struct.ComponentSchema {
   collectionName: 'components_blocks_faqs';
   info: {
@@ -130,7 +143,7 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     logo: Schema.Attribute.Component<'shared.logo', false>;
     navItems: Schema.Attribute.Component<'shared.link', true>;
     socialLinks: Schema.Attribute.Component<'shared.logo', true>;
-    text: Schema.Attribute.Text;
+    text: Schema.Attribute.String;
   };
 }
 
@@ -144,6 +157,44 @@ export interface LayoutHeader extends Struct.ComponentSchema {
     cta: Schema.Attribute.Component<'shared.link', false>;
     logo: Schema.Attribute.Component<'shared.logo', false>;
     navItems: Schema.Attribute.Component<'shared.link', true>;
+  };
+}
+
+export interface MenuDropdown extends Struct.ComponentSchema {
+  collectionName: 'components_menu_dropdowns';
+  info: {
+    description: '';
+    displayName: 'Dropdown';
+    icon: 'arrowDown';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+  };
+}
+
+export interface MenuLink extends Struct.ComponentSchema {
+  collectionName: 'components_menu_links';
+  info: {
+    displayName: 'link';
+    icon: 'link';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface MenuMenuLink extends Struct.ComponentSchema {
+  collectionName: 'components_menu_menu_links';
+  info: {
+    displayName: 'MenuLink';
+  };
+  attributes: {
+    tittle: Schema.Attribute.String;
+    url: Schema.Attribute.String;
   };
 }
 
@@ -165,9 +216,12 @@ export interface SharedLink extends Struct.ComponentSchema {
     displayName: 'Link';
   };
   attributes: {
+    dropdownItems: Schema.Attribute.JSON;
     href: Schema.Attribute.String;
     isButtonLink: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isMenuDropdown: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     label: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<['PRIMARY', 'SECONDARY']>;
   };
@@ -191,6 +245,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.card-grid': BlocksCardGrid;
       'blocks.content-with-image': BlocksContentWithImage;
+      'blocks.display-carrusel': BlocksDisplayCarrusel;
       'blocks.faqs': BlocksFaqs;
       'blocks.featured-articles': BlocksFeaturedArticles;
       'blocks.heading-section': BlocksHeadingSection;
@@ -201,6 +256,9 @@ declare module '@strapi/strapi' {
       'layout.banner': LayoutBanner;
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
+      'menu.dropdown': MenuDropdown;
+      'menu.link': MenuLink;
+      'menu.menu-link': MenuMenuLink;
       'shared.card': SharedCard;
       'shared.link': SharedLink;
       'shared.logo': SharedLogo;

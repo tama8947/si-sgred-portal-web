@@ -6,11 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "logo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.logo"
-    },
     "navItems": {
       "type": "component",
       "repeatable": true,
@@ -21,8 +16,13 @@
       "repeatable": true,
       "component": "shared.logo"
     },
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.logo"
+    },
     "text": {
-      "type": "text"
+      "type": "string"
     }
   }
 }

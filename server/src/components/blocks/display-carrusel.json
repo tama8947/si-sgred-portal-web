@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_display_carrusels",
+  "info": {
+    "displayName": "Display Carrusel"
+  },
+  "options": {},
+  "attributes": {
+    "Carrusel": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

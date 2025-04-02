@@ -15,12 +15,12 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="sticky top-0 z-50">
-  <nav class="relative px-6 py-6 flex justify-between items-center bg-white">
+  <nav id="menu-navegacion" class="relative px-6 py-6 flex justify-between items-center bg-white">
     <a class="text-3xl font-bold leading-none" href={logo.logoLink}>
       <StrapiImage src={logo.image.url} alt={logo.image.alternativeText} height={48} width={48} />
     </a>
     <div class="lg:hidden">
-      <button class="navbar-burger flex items-center text-green-600 p-3" id="burger-button">
+      <button class="navbar-burger flex items-center text-black p-3" id="burger-button">
         <svg
           class="block h-4 w-4 fill-current"
           viewBox="0 0 20 20"
@@ -34,19 +34,52 @@ const currentPath = Astro.url.pathname;
     <ul
       class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6"
     >
-      {
-        navItems.map((item) => (
+    {
+      navItems.map((item) => (
+        item.isMenuDropdown ? (
+        <li class="relative group pt-4 pb-4">
+        <a
+          class={`text-sm font-bold flex items-center ${currentPath === item.href ? 'text-black' : 'text-gray-400 hover:text-gray-500'}`}
+          href={item.href}
+          target={item.isExternal ? "_blank" : "_self"}
+        >
+          {item.label}
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="text-gray-500 ml-2" viewBox="0 0 20 20">
+            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path>
+          </svg>
+        </a>
+          {/* Subitems de menu desplegables */}
+          {item.dropdownItems && item.dropdownItems.data && item.dropdownItems.data.length > 0 ? (
+            <ul class="absolute left-0 hidden mt-2 w-64 bg-white border border-gray-300 shadow-xl group-focus-within:block group-hover:block">
+              {item.dropdownItems.data.map((subitem) => (
+                <li  class="w-full"> 
+                  <a
+                    href={subitem.href}
+                    class="block w-full py-2 px-4 text-gray-400 hover:text-white hover:bg-gray-500"
+                  >
+                    {subitem.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          </li>
+        ) : (
           <li>
             <a
-              class={`text-sm font-bold ${currentPath === item.href ? 'text-green-600' : 'text-gray-400 hover:text-gray-500'}`}
+              class={`text-sm font-bold ${currentPath === item.href ? 'text-black' : 'text-gray-400 hover:text-gray-500'}`}
               href={item.href}
               target={item.isExternal ? "_blank" : "_self"}
             >
               {item.label}
             </a>
           </li>
-        ))
-      }
+        )
+      ))
+    }
+    
+    
     </ul>
     {
       cta && (

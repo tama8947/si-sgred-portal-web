@@ -26,6 +26,13 @@
         "PRIMARY",
         "SECONDARY"
       ]
+    },
+    "isMenuDropdown": {
+      "type": "boolean",
+      "default": false
+    },
+    "dropdownItems": {
+      "type": "json"
     }
   }
 }

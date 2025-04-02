@@ -14,11 +14,31 @@ const currentYear = new Date().getFullYear();
 ---
 
 <section>
-  <div class="py-20 mt-20 bg-gray-100">
+  <div id="footer" class="py-20 mt-20 bg-gray-100">
     <div class="container mx-auto px-4">
       <div
-        class="pb-12 flex flex-wrap items-center justify-between border-b border-gray-100"
+        class="pb-12 flex flex-wrap items-center justify-between "
       >
+
+        <div class="w-full lg:w-auto">
+          <ul class="flex flex-wrap lg:space-x-5 items-center">
+            {
+              navItems &&
+                navItems.map((item) => (
+                  <li class="w-full md:w-auto mb-2 md:mb-0">
+                    <a
+                      class="lg:text-sm text-white hover:text-gray-500"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-between items-center">
         <div class="w-full lg:w-1/5 mb-12 lg:mb-4">
           <a
             class="inline-block text-3xl font-bold leading-none"
@@ -32,34 +52,16 @@ const currentYear = new Date().getFullYear();
             />
           </a>
         </div>
-        <div class="w-full lg:w-auto">
-          <ul class="flex flex-wrap lg:space-x-5 items-center">
-            {
-              navItems &&
-                navItems.map((item) => (
-                  <li class="w-full md:w-auto mb-2 md:mb-0">
-                    <a
-                      class="lg:text-sm text-gray-400 hover:text-gray-500"
-                      href={item.href}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))
-            }
-          </ul>
-        </div>
-      </div>
-      <div class="mt-8 flex flex-wrap justify-between items-center">
-        <p class="order-last text-sm text-gray-400">
+        <p class="order-last text-sm text-white">
           &copy; {currentYear}. {text}
         </p>
-        <div class="mb-4 lg:mb-0 order-first lg:order-last">
+        <div class="mb-4 lg:mb-0 order-first lg:order-last ">
           {
             socialLinks &&
               socialLinks.map((item) => (
                 <a
-                  class="inline-block mr-2 p-2 bg-gray-50 hover:bg-gray-100 rounded"
+                  id="footer-redes"
+                  class="inline-block p-2"
                   href={item.logoLink}
                 >
                   <StrapiImage

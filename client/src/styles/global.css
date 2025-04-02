@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+
+
+/* Colores principales */
+
+:root {
+    --color-primario: #3366cc;
+    --color-secundario: #0159bd;
+    --color-terciario: #dce0e9;
+    --color-fondo: #282c34;
+    --color-texto-white: #ffffff;
+    --color-texto-black: #000000;
+}
+
+
+#banner, #footer {
+    background-color: var(--color-primario)  !important;
+}
+
+
+/* Menu de navegación */
+
+nav img  {
+    height: 70px; 
+    width: auto; 
+}
+
+
+/* Footer */
+#footer img  {
+    height: 40px; 
+    width: auto; 
+}
+
+#footer-redes img {
+    padding: 0px 10px 0px 10px;
+    border-right: 1px solid rgb(255, 255, 255); 
+}
+
+#footer-redes img:hover {
+    background-color: var(--color-secundario) ;
+}
+
