@@ -8,11 +8,11 @@ interface Props {
 }
 
 const {
-  data: { articles },
+  data: { titleFeature, articles },
 } = Astro.props;
 ---
 
-<section>
+<!-- <section>
   <div class="py-20 bg-gray-50">
     <div class="container mx-auto px-4 w-full lg:w-3/4">
       <div class="flex gap-4 flex-wrap">
@@ -36,7 +36,7 @@ const {
                 </span>
                 <div class="mb-2 flex items-center text-sm">
                   <span
-                    class="text-green-600 hover:text-green-700"
+                    class="text-blue-900 font-bold hover:text-blue-800"
                   >
                     {article.author.fullName}
                   </span>
@@ -51,6 +51,67 @@ const {
           ))
         }
       </div>
+    </div>
+  </div>
+</section> -->
+<section class="py-8 bg-gray-50">
+  <div class="container mx-auto px-4">
+    
+    {titleFeature && (
+      <h2 class="text-2xl font-bold mb-10 text-center text-blue-900">
+        {titleFeature}
+      </h2>
+    )}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+      {articles.slice(-3).map((article) => (
+        <a href={`/blog/${article.slug}`} >
+          <div class="rounded shadow overflow-hidden bg-white h-[520px] max-w-[340px] mx-auto flex flex-col">
+            
+            {/* Imagen y etiqueta encima */}
+            <div class="relative w-full h-[280px]">
+              <StrapiImage
+                class="w-full h-full object-cover"
+                src={article.featuredImage.url}
+                alt={article.featuredImage.alternativeText}
+                height={600}
+                width={400}
+              />
+              {Array.isArray(article.contentTags) && article.contentTags.length > 0 && (
+                <span class="absolute top-3 right-3 bg-gray-400 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                  {article.contentTags[0]?.title || "General"}
+                </span>
+              )}
+            </div>
+
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                {/* <span class="text-blue-900 font-bold hover:text-blue-800">
+                  {article.author.fullName}
+                </span> */}
+                <span class="block text-sm text-gray-400">
+                  {formatDate(article.publishedAt)}
+                </span>
+                <h2 class="my-2 text-xl font-bold">
+                  {article.title}
+                </h2>
+              </div>
+              <span class="mt-4 text-blue-900 hover:text-blue-800 font-bold hover:underline">
+                Leer más
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/blog"
+        class="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded transition duration-300"
+      >
+        Ver más
+      </a>
     </div>
   </div>
 </section>

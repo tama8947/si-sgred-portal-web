@@ -29,7 +29,7 @@
         "blocks.markdown",
         "blocks.featured-articles",
         "blocks.newsletter",
-        "blocks.display-carrusel"
+        "blocks.layout-image"
       ]
     }
   }

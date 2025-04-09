@@ -12,12 +12,6 @@
   "attributes": {
     "heading": {
       "type": "string"
-    },
-    "link": {
-      "displayName": "link",
-      "type": "component",
-      "repeatable": true,
-      "component": "menu.link"
     }
   }
 }

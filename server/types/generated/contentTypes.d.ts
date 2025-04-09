@@ -392,7 +392,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'blocks.card-grid',
         'blocks.markdown',
         'blocks.featured-articles',
-        'blocks.display-carrusel',
+        'blocks.layout-image',
       ]
     >;
     content: Schema.Attribute.RichText;
@@ -507,7 +507,7 @@ export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
         'blocks.markdown',
         'blocks.featured-articles',
         'blocks.newsletter',
-        'blocks.display-carrusel',
+        'blocks.layout-image',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -522,36 +522,6 @@ export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiMainMenuMainMenu extends Struct.SingleTypeSchema {
-  collectionName: 'main_menus';
-  info: {
-    description: '';
-    displayName: 'MainMenu';
-    pluralName: 'main-menus';
-    singularName: 'main-menu';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::main-menu.main-menu'
-    > &
-      Schema.Attribute.Private;
-    MainMenuItems: Schema.Attribute.DynamicZone<['menu.link', 'menu.dropdown']>;
-    publishedAt: Schema.Attribute.DateTime;
-    tittle: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -613,7 +583,6 @@ export interface ApiSectionSection extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     heading: Schema.Attribute.String;
-    link: Schema.Attribute.Component<'menu.link', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1166,7 +1135,6 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::global.global': ApiGlobalGlobal;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
-      'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::page.page': ApiPagePage;
       'api::section.section': ApiSectionSection;
       'api::tag.tag': ApiTagTag;

@@ -41,7 +41,7 @@ const {
       </a>
     </li>
     <li>
-      <span id="progress" class="text-center">Page {currentPage} of {totalPages}</span>
+      <span id="progress" class="text-center">Página {currentPage} de {totalPages}</span>
     </li>
     <li>
       <a id="nextPageButton" href={nextPage} aria-label="Go to next page (page {currentPage + 1})" class={`pagination-button ${currentPage === totalPages ? 'cursor-not-allowed' : ''}`} aria-disabled={currentPage === totalPages}>
@@ -68,17 +68,17 @@ const {
     border-radius: 0.25rem;
     width: 2.5rem; /* 10 units */
     height: 2.5rem; /* 10 units */
-    background-color: #28a745; /* bg-green-500 */
+    background-color: #012571; /* bg-green-500 */
     color: #fff;
     transition: background-color 0.2s;
   }
 
   .pagination-button:hover {
-    background-color: #218838; /* hover:bg-green-600 */
+    background-color: #01359a; /* hover:bg-green-600 */
   }
 
   .pagination-button.cursor-not-allowed {
-    background-color: #d4edda; /* bg-light-green-500 */
+    background-color: #77a2d5; /* bg-light-green-500 */
     cursor: not-allowed;
   }
 

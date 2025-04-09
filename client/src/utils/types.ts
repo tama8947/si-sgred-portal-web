@@ -5,6 +5,18 @@ export interface Image {
   alternativeText: string;
 }
 
+export interface ImageFormat {
+  url: string;
+  width?: number;
+  height?: number;
+}
+
+export interface ImageLayout {
+  formats?: {
+    large?: ImageFormat;
+  };
+  url: string;
+ }
 export interface Logo {
   id: number;
   logoText: string;
@@ -44,7 +56,8 @@ export type ComponentType =
   | "blocks.person-card"
   | "blocks.markdown"
   | "blocks.featured-articles"
-  | "blocks.newsletter";
+  | "blocks.newsletter"
+  | "blocks.layout-image";
 
 export interface Base<
   T extends ComponentType,
@@ -108,6 +121,7 @@ export interface MarkdownProps extends Base<"blocks.markdown"> {
 }
 
 export interface FeaturedArticlesProps extends Base<"blocks.featured-articles"> {
+  titleFeature: string | null;
   articles: {
     id: number;
     documentId: string;
@@ -124,6 +138,11 @@ export interface FeaturedArticlesProps extends Base<"blocks.featured-articles"> 
       image: Image;
     };
     featuredImage: Image;
+    contentTags: {
+      id: number;
+      title: string;
+      description: string;
+    }[];
   }[];
 }
 
@@ -135,6 +154,13 @@ export interface NewsletterProps extends Base<"blocks.newsletter"> {
   formId: string;
 }
 
+export interface LayoutImageProps extends Base<"blocks.layout-image"> {
+  id: number;
+  label: string;
+  href: string;
+  image: ImageLayout[];
+}
+
 export type BlockData =
   | HeroProps
   | HeadingSectionProps
@@ -144,4 +170,5 @@ export type BlockData =
   | PersonCardProps
   | MarkdownProps
   | FeaturedArticlesProps
-  | NewsletterProps;
+  | NewsletterProps
+  | LayoutImageProps;

@@ -1,11 +1,17 @@
 {
-  "collectionName": "components_blocks_display_carrusels",
+  "collectionName": "components_blocks_layout_images",
   "info": {
-    "displayName": "Display Carrusel"
+    "displayName": "Layout Image"
   },
   "options": {},
   "attributes": {
-    "Carrusel": {
+    "label": {
+      "type": "string"
+    },
+    "href": {
+      "type": "string"
+    },
+    "image": {
       "allowedTypes": [
         "images",
         "files",

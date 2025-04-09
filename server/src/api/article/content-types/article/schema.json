@@ -48,7 +48,7 @@
         "blocks.card-grid",
         "blocks.markdown",
         "blocks.featured-articles",
-        "blocks.display-carrusel"
+        "blocks.layout-image"
       ]
     },
     "contentTags": {

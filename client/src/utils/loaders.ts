@@ -51,11 +51,21 @@ const blocksPopulate = {
                 },
               },
             },
+            contentTags: {
+              fields: ["title", "description"], 
+            },
           },
         },
       },
     },
     "blocks.newsletter": true,
+    "blocks.layout-image": {
+      populate: {
+        image: {
+          fields: ["url", "alternativeText"],
+        },
+      },
+    },
   },
 };
 

@@ -24,19 +24,6 @@ export interface BlocksContentWithImage extends Struct.ComponentSchema {
   };
 }
 
-export interface BlocksDisplayCarrusel extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_display_carrusels';
-  info: {
-    displayName: 'Display Carrusel';
-  };
-  attributes: {
-    Carrusel: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-  };
-}
-
 export interface BlocksFaqs extends Struct.ComponentSchema {
   collectionName: 'components_blocks_faqs';
   info: {
@@ -50,10 +37,12 @@ export interface BlocksFaqs extends Struct.ComponentSchema {
 export interface BlocksFeaturedArticles extends Struct.ComponentSchema {
   collectionName: 'components_blocks_featured_articles';
   info: {
+    description: '';
     displayName: 'Featured Articles';
   };
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+    titleFeature: Schema.Attribute.String;
   };
 }
 
@@ -80,6 +69,21 @@ export interface BlocksHero extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images'>;
     links: Schema.Attribute.Component<'shared.link', true>;
     text: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksLayoutImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_layout_images';
+  info: {
+    displayName: 'Layout Image';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    label: Schema.Attribute.String;
   };
 }
 
@@ -160,44 +164,6 @@ export interface LayoutHeader extends Struct.ComponentSchema {
   };
 }
 
-export interface MenuDropdown extends Struct.ComponentSchema {
-  collectionName: 'components_menu_dropdowns';
-  info: {
-    description: '';
-    displayName: 'Dropdown';
-    icon: 'arrowDown';
-  };
-  attributes: {
-    href: Schema.Attribute.String;
-    label: Schema.Attribute.String;
-  };
-}
-
-export interface MenuLink extends Struct.ComponentSchema {
-  collectionName: 'components_menu_links';
-  info: {
-    displayName: 'link';
-    icon: 'link';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    name: Schema.Attribute.String;
-    url: Schema.Attribute.String;
-  };
-}
-
-export interface MenuMenuLink extends Struct.ComponentSchema {
-  collectionName: 'components_menu_menu_links';
-  info: {
-    displayName: 'MenuLink';
-  };
-  attributes: {
-    tittle: Schema.Attribute.String;
-    url: Schema.Attribute.String;
-  };
-}
-
 export interface SharedCard extends Struct.ComponentSchema {
   collectionName: 'components_shared_cards';
   info: {
@@ -245,20 +211,17 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.card-grid': BlocksCardGrid;
       'blocks.content-with-image': BlocksContentWithImage;
-      'blocks.display-carrusel': BlocksDisplayCarrusel;
       'blocks.faqs': BlocksFaqs;
       'blocks.featured-articles': BlocksFeaturedArticles;
       'blocks.heading-section': BlocksHeadingSection;
       'blocks.hero': BlocksHero;
+      'blocks.layout-image': BlocksLayoutImage;
       'blocks.markdown': BlocksMarkdown;
       'blocks.newsletter': BlocksNewsletter;
       'blocks.person-card': BlocksPersonCard;
       'layout.banner': LayoutBanner;
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
-      'menu.dropdown': MenuDropdown;
-      'menu.link': MenuLink;
-      'menu.menu-link': MenuMenuLink;
       'shared.card': SharedCard;
       'shared.link': SharedLink;
       'shared.logo': SharedLogo;
