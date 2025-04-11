@@ -168,6 +168,19 @@ async function getAllArticles(page: number) {
         },
       },
       contentTags: true,
+      documents: {
+        populate: {
+          typeDocument: {
+            fields: ["title"]
+          },
+          categoryDocument: {
+            fields: ["title"]
+          },
+          image: {
+            fields: ["url", "name"] 
+          }
+        }
+      },
       blocks: blocksPopulate,
     },
     pagination: {

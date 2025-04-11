@@ -30,6 +30,20 @@ interface Article {
     title: string;
   }[];
   blocks: BlockData[];
+  documents: {
+    title: string;
+    description: string;
+    expeditionDate: string;
+    publicationDate: string;
+    url: string;
+    image?: Image;
+    categoryDocument?: {
+      title: string;
+    }[]; 
+    typeDocument?: {
+      title: string;
+    }[]; 
+  }[];
 }
 
 export async function getStaticPaths() {
@@ -63,6 +77,7 @@ const blocks = post?.blocks || [];
 const featuredImage = post?.featuredImage || {};
 const author = post?.author || {};
 const tags = post?.contentTags || [];
+const documentTable = post?.documents || [];
 ---
 
 <BaseLayout>
@@ -132,5 +147,80 @@ const tags = post?.contentTags || [];
       { post?.content && <Markdown data={{ content: post.content, __component: "blocks.markdown" }} />} 
     </div>
   </section>
+  <!-- <pre>{JSON.stringify(post, null, 2)}</pre> -->
+  <!-- <pre>{JSON.stringify(documentTable, null, 2)}</pre> -->
+
+  {
+    documentTable.length > 0 && documentTable.map((docInfo) => (
+     
+    <section class="overflow-auto max-w-3xl mx-auto">
+      { docInfo.title && (
+        <table class="table-auto w-full text-sm text-left mb-6">
+          <tbody>
+            <tr>
+              <td class="p-2"></td>
+              <td class="p-2 font-semibold align-top">Nombre</td>
+              <td class="p-2 align-top text-blue-900">
+                <a href={docInfo.url} target="_blank" rel="noopener noreferrer" class="hover:underline font-semibold">
+                  {docInfo.title || "Sin nombre"}
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="p-2"></td>
+              <td class="p-2 font-semibold align-top">Descripción</td>
+              <td class="p-2 align-top text-gray-800">{docInfo.description || "Sin descripción"}</td>
+            </tr>
+
+            <tr>
+              <td class="p-2 w-16 align-top flex justify-center items-center">
+              {docInfo.image && docInfo.image?.url ? (
+                  <StrapiImage
+                    src={docInfo.image?.url}
+                    alt={docInfo.image?.url || "Documento"}
+                    width={40}
+                    height={40}
+                    class="w-10 h-auto mt-2"
+                  />
+                ) : (
+                  <img src="/pdf-icon.png" alt="PDF icon" class="w-10 h-auto mt-2" />
+                )}
+              </td>
+              <td class="p-2 font-semibold">Categoría</td>
+              <td class="p-2 text-gray-800">{docInfo.categoryDocument?.[0]?.title || "Sin categoría"}</td>
+            </tr>
+
+            <tr>
+              <td class="p-2"></td>
+              <td class="p-2 font-semibold">Tipo de documento</td>
+              <td class="p-2 text-gray-800"> {docInfo.typeDocument?.[0]?.title || "Desconocido"}</td>
+            </tr>
+
+            <tr>
+              <td class="p-2"></td>
+              <td class="p-2 font-semibold">Fechas</td>
+              <td class="p-2 text-gray-800">
+                {docInfo.expeditionDate
+                  ? new Date(docInfo.expeditionDate).toLocaleDateString()
+                  : "Sin fecha"}{" "}
+                &nbsp;|&nbsp;
+                <span class="font-semibold">Publicación:</span>{" "}
+                {docInfo.publicationDate
+                  ? new Date(docInfo.publicationDate).toLocaleDateString()
+                  : "Sin fecha"}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr class="my-8 border-t-2 border-gray-200" />
+
+      )}
+    </section>
+
+    ))
+  }
+
+
   <BlockRenderer blocks={blocks} />
 </BaseLayout>

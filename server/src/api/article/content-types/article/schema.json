@@ -48,13 +48,19 @@
         "blocks.card-grid",
         "blocks.markdown",
         "blocks.featured-articles",
-        "blocks.layout-image"
+        "blocks.layout-image",
+        "blocks.documents"
       ]
     },
     "contentTags": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tag.tag"
+    },
+    "documents": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.documents"
     }
   }
 }

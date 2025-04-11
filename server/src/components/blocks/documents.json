@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_blocks_documents",
+  "info": {
+    "displayName": "Documents",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "expeditionDate": {
+      "type": "date"
+    },
+    "publicationDate": {
+      "type": "date"
+    },
+    "typeDocument": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::type-document.type-document"
+    },
+    "url": {
+      "type": "string"
+    },
+    "categoryDocument": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category-document.category-document"
+    }
+  }
+}

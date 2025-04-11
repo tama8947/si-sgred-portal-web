@@ -24,6 +24,30 @@ export interface BlocksContentWithImage extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksDocuments extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_documents';
+  info: {
+    description: '';
+    displayName: 'Documents';
+  };
+  attributes: {
+    categoryDocument: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category-document.category-document'
+    >;
+    description: Schema.Attribute.Text;
+    expeditionDate: Schema.Attribute.Date;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publicationDate: Schema.Attribute.Date;
+    title: Schema.Attribute.String;
+    typeDocument: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::type-document.type-document'
+    >;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksFaqs extends Struct.ComponentSchema {
   collectionName: 'components_blocks_faqs';
   info: {
@@ -211,6 +235,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.card-grid': BlocksCardGrid;
       'blocks.content-with-image': BlocksContentWithImage;
+      'blocks.documents': BlocksDocuments;
       'blocks.faqs': BlocksFaqs;
       'blocks.featured-articles': BlocksFeaturedArticles;
       'blocks.heading-section': BlocksHeadingSection;
