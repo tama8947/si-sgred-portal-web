@@ -29,7 +29,8 @@
         "blocks.markdown",
         "blocks.featured-articles",
         "blocks.newsletter",
-        "blocks.layout-image"
+        "blocks.layout-image",
+        "blocks.layout-card"
       ]
     }
   }

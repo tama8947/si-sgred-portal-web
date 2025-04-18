@@ -540,6 +540,7 @@ export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
         'blocks.featured-articles',
         'blocks.newsletter',
         'blocks.layout-image',
+        'blocks.layout-card',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

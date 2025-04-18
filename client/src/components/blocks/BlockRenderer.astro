@@ -10,6 +10,7 @@ import Markdown from "./Markdown.astro";
 import FeaturedArticles from "./FeaturedArticles.astro";
 import Newsletter from "./Newsletter.astro";
 import LayoutImage from "./LayoutImage.astro";
+import LayoutCard from "./LayoutCard.astro";
 
 
 
@@ -24,6 +25,7 @@ const componentMap: Record<ComponentType, any> = {
   "blocks.featured-articles": FeaturedArticles,
   "blocks.newsletter": Newsletter,
   "blocks.layout-image": LayoutImage,
+  "blocks.layout-card": LayoutCard,
 };
 
 const { blocks } = Astro.props;

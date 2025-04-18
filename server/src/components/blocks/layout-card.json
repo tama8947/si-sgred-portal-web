@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_layout_cards",
+  "info": {
+    "displayName": "Layout card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titleSection": {
+      "type": "string"
+    },
+    "cardImage": {
+      "displayName": "Card Image",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.card-image"
+    }
+  }
+}

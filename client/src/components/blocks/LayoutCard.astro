@@ -1,0 +1,54 @@
+---
+import type { LayoutCardProps } from "../../utils/types";
+import StrapiImage from "../StrapiImage.astro";
+interface Props {
+  data: LayoutCardProps;
+}
+
+const {
+  data: { titleSection, cardImage },
+} = Astro.props;
+
+---  
+<section class="py-8 bg-gray-50">
+  <div class="container mx-auto px-4">
+    
+    {titleSection && (
+      <h2 class="text-2xl font-bold mb-10 text-center text-blue-900">
+        {titleSection}
+      </h2>
+    )}
+
+    <!-- Grilla centrada con espacio mínimo entre los bloques -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2 justify-items-center">
+      {cardImage.map((imageItem, index) => (
+        <a
+          href={imageItem.url} 
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="rounded-xl border border-gray-400 shadow overflow-hidden bg-white flex flex-col w-[300px] h-[150px]">
+            <div class="relative w-full h-full">
+              <StrapiImage
+                class="w-full h-full object-fill"
+                src={imageItem.image?.url}   
+                alt={imageItem.title} 
+                // height={280}
+                // width={340}
+              />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- <div class="mt-10 text-center">
+      <a
+        href="/blog"
+        class="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded transition duration-300"
+      >
+        Ver más
+      </a>
+    </div> -->
+  </div>
+</section>

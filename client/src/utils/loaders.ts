@@ -66,6 +66,17 @@ const blocksPopulate = {
         },
       },
     },
+    "blocks.layout-card": {
+      populate: {
+        cardImage: {
+          populate: {
+            image: {
+              fields: ["url", "alternativeText"],
+            },
+          },
+        },
+      },
+    },
   },
 };
 

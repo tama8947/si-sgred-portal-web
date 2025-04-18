@@ -96,6 +96,18 @@ export interface BlocksHero extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksLayoutCard extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_layout_cards';
+  info: {
+    description: '';
+    displayName: 'Layout card';
+  };
+  attributes: {
+    cardImage: Schema.Attribute.Component<'shared.card-image', true>;
+    titleSection: Schema.Attribute.String;
+  };
+}
+
 export interface BlocksLayoutImage extends Struct.ComponentSchema {
   collectionName: 'components_blocks_layout_images';
   info: {
@@ -199,6 +211,20 @@ export interface SharedCard extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCardImage extends Struct.ComponentSchema {
+  collectionName: 'components_shared_card_images';
+  info: {
+    description: '';
+    displayName: 'Card Image';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface SharedLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_links';
   info: {
@@ -240,6 +266,7 @@ declare module '@strapi/strapi' {
       'blocks.featured-articles': BlocksFeaturedArticles;
       'blocks.heading-section': BlocksHeadingSection;
       'blocks.hero': BlocksHero;
+      'blocks.layout-card': BlocksLayoutCard;
       'blocks.layout-image': BlocksLayoutImage;
       'blocks.markdown': BlocksMarkdown;
       'blocks.newsletter': BlocksNewsletter;
@@ -248,6 +275,7 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
       'shared.card': SharedCard;
+      'shared.card-image': SharedCardImage;
       'shared.link': SharedLink;
       'shared.logo': SharedLogo;
     }

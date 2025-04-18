@@ -17,6 +17,39 @@ export interface ImageLayout {
   };
   url: string;
  }
+
+ export interface ImageData {
+  id: number;
+  documentId?: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  url: string;
+  formats?: {
+    thumbnail?: {
+      url: string;
+      width: number;
+      height: number;
+      size: number;
+    };
+    small?: {
+      url: string;
+      width: number;
+      height: number;
+      size: number;
+    };
+  };
+}
+
+export interface CardImageItem {
+  id: number;
+  title: string;
+  url: string;
+  description: string;
+  image: ImageData;
+}
 export interface Logo {
   id: number;
   logoText: string;
@@ -57,7 +90,8 @@ export type ComponentType =
   | "blocks.markdown"
   | "blocks.featured-articles"
   | "blocks.newsletter"
-  | "blocks.layout-image";
+  | "blocks.layout-image"
+  | "blocks.layout-card";
 
 export interface Base<
   T extends ComponentType,
@@ -161,6 +195,12 @@ export interface LayoutImageProps extends Base<"blocks.layout-image"> {
   image: ImageLayout[];
 }
 
+export interface LayoutCardProps extends Base<"blocks.layout-card"> {
+  id: number;
+  titleSection: string | null;
+  cardImage: CardImageItem[];
+}
+
 export type BlockData =
   | HeroProps
   | HeadingSectionProps
@@ -171,4 +211,5 @@ export type BlockData =
   | MarkdownProps
   | FeaturedArticlesProps
   | NewsletterProps
-  | LayoutImageProps;
+  | LayoutImageProps
+  | LayoutCardProps;
