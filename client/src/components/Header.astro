@@ -11,7 +11,6 @@ const {
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
-
 ---
 
 <header class="sticky top-0 z-50">
@@ -31,39 +30,35 @@ const currentPath = Astro.url.pathname;
         </svg>
       </button>
     </div>
-    <ul
-      class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6"
-    >
-    {
-      navItems.map((item) => (
+    <ul class="hidden lg:flex lg:flex-wrap lg:justify-start lg:items-center lg:space-x-10">
+      {navItems.map((item) => (
         item.isMenuDropdown ? (
-        <li class="relative group pt-4 pb-4">
-        <a
-          class={`text-sm font-bold flex items-center ${currentPath === item.href ? 'text-black' : 'text-gray-400 hover:text-gray-500'}`}
-          href={item.href}
-          target={item.isExternal ? "_blank" : "_self"}
-        >
-          {item.label}
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="text-gray-500 ml-2" viewBox="0 0 20 20">
-            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path>
-          </svg>
-        </a>
-          {/* Subitems de menu desplegables */}
-          {item.dropdownItems && item.dropdownItems.data && item.dropdownItems.data.length > 0 ? (
-            <ul class="absolute left-0 hidden mt-2 w-64 bg-white border border-gray-300 shadow-xl group-focus-within:block group-hover:block">
-              {item.dropdownItems.data.map((subitem) => (
-                <li  class="w-full"> 
-                  <a
-                    href={subitem.href}
-                    class="block w-full py-2 px-4 text-gray-400 hover:text-white hover:bg-gray-500"
-                  >
-                    {subitem.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
+          <li class="relative pt-4 pb-4">
+            <a
+              class={`text-sm font-bold flex items-center ${currentPath === item.href ? 'text-black' : 'text-gray-400 hover:text-gray-500'}`}
+              href="#"
+              onclick="event.preventDefault(); this.nextElementSibling.classList.toggle('hidden');"
+              target={item.isExternal ? "_blank" : "_self"}
+            >
+              {item.label}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-gray-500 ml-2 icon-dropdown" viewBox="0 0 20 20">
+                <path d="M12 17L5 9h14l-7 8z"></path>
+              </svg>
+            </a>
+            {item.dropdownItems?.data?.length > 0 && (
+              <ul class="absolute left-0 hidden mt-2 w-64 bg-white border border-gray-300 shadow-xl"> 
+                {item.dropdownItems.data.map((subitem) => (
+                  <li class="w-full"> 
+                    <a
+                      href={subitem.href}
+                      class="block w-full py-2 px-4 text-gray-400 hover:text-white hover:bg-gray-500"
+                    >
+                      {subitem.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ) : (
           <li>
@@ -76,31 +71,24 @@ const currentPath = Astro.url.pathname;
             </a>
           </li>
         )
-      ))
-    }
-    
-    
+      ))}
     </ul>
-    {
-      cta && (
-        <a
-          class="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200"
-          href={cta.href}
-          target={cta.isExternal ? "_blank" : "_self"}
-        >
-          {cta.label}
-        </a>
-      )
-    }
+    
+    {cta && (
+      <a
+        class="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200"
+        href={cta.href}
+        target={cta.isExternal ? "_blank" : "_self"}
+      >
+        {cta.label}
+      </a>
+    )}
   </nav>
-  <div
-    class="navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50 hidden"
-    id="navbar-menu"
-  >
+
+  <!-- Menú móvil -->
+  <div class="navbar-menu fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50 hidden" id="navbar-menu">
     <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-    <nav
-      class="relative flex flex-col py-6 px-6 h-full w-full bg-white border-r overflow-y-auto"
-    >
+    <nav class="relative flex flex-col py-6 px-6 h-full w-full bg-white border-r overflow-y-auto">
       <div class="flex items-center mb-8">
         <a class="mr-auto text-3xl font-bold leading-none" href={logo.logoLink}>
           <StrapiImage class="h-12 w-12" src={logo.image.url} alt={logo.image.alternativeText} height={48} width={48} />
@@ -113,39 +101,65 @@ const currentPath = Astro.url.pathname;
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
       <div>
         <ul>
-          {
-            navItems.map((item) => (
-              <li class="mb-1">
+          {navItems.map((item) => (
+            item.isMenuDropdown ? (
+              <li class="pt-4 pb-4">
+                <div 
+                  class={`text-sm font-bold flex items-center justify-between ${currentPath === item.href ? 'text-black' : 'text-gray-400 hover:text-gray-500'}`}
+                  onclick="this.nextElementSibling.classList.toggle('hidden')"
+                >
+                  {item.label}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-gray-500 ml-2 icon-dropdown" viewBox="0 0 20 20">
+                    <path d="M12 17L5 9h14l-7 8z"></path>
+                  </svg>
+                </div>
+                {item.dropdownItems?.data?.length > 0 && (
+                  <ul class="hidden mt-2 w-full bg-white border border-gray-300 shadow-xl">
+                    {item.dropdownItems.data.map((subitem) => (
+                      <li class="w-full"> 
+                        <a
+                          href={subitem.href}
+                          class="block w-full py-2 px-4 text-gray-400 hover:text-white hover:bg-gray-500"
+                          onclick="document.getElementById('navbar-menu').classList.add('hidden')"
+                        >
+                          {subitem.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ) : (
+              <li>
                 <a
-                  class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded"
+                  class={`text-sm font-bold ${currentPath === item.href ? 'text-black' : 'text-gray-400 hover:text-gray-500'}`}
                   href={item.href}
                   target={item.isExternal ? "_blank" : "_self"}
+                  onclick="document.getElementById('navbar-menu').classList.add('hidden')"
                 >
                   {item.label}
                 </a>
               </li>
-            ))
-          }
+            )
+          ))}
         </ul>
       </div>
       <div class="mt-auto">
         <div class="pt-6">
-          { cta && (
+          {cta && (
             <a
               class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl"
               href={cta.href}
               target={cta.isExternal ? "_blank" : "_self"}
-            >{cta.label}</a>
+            >
+              {cta.label}
+            </a>
           )}
         </div>
       </div>
@@ -153,10 +167,11 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
-<script>
-  const burgerButton = document.getElementById('burger-button') as HTMLButtonElement;
-  const navbarMenu = document.getElementById('navbar-menu') as HTMLDivElement;
-  const closeButton = document.querySelector('.navbar-close') as HTMLButtonElement;
+<script is:inline>
+  // Control del menú móvil
+  const burgerButton = document.getElementById('burger-button');
+  const navbarMenu = document.getElementById('navbar-menu');
+  const closeButton = document.querySelector('.navbar-close');
   
   burgerButton.addEventListener('click', () => {
     navbarMenu.classList.toggle('hidden');
@@ -165,5 +180,22 @@ const currentPath = Astro.url.pathname;
   closeButton.addEventListener('click', () => {
     navbarMenu.classList.add('hidden');
   });
-  
+
+  // Cerrar menú al hacer clic en enlaces
+  document.querySelectorAll('#navbar-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navbarMenu.classList.add('hidden');
+    });
+  });
+
+  // Cerrar dropdowns al hacer click fuera (solo desktop)
+  document.addEventListener('click', (e) => {
+    if(window.innerWidth >= 1024) {
+      document.querySelectorAll('#menu-navegacion ul[class*="absolute"]').forEach(menu => {
+        if(!menu.contains(e.target) && !e.target.closest('li')?.contains(menu)) {
+          menu.classList.add('hidden');
+        }
+      });
+    }
+  });
 </script>

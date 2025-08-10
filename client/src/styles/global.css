@@ -19,31 +19,118 @@ body {
 }
 
 
-#banner, #footer {
-    background-color: var(--color-primario)  !important;
+#banner,
+#footer {
+    background-color: var(--color-primario) !important;
 }
 
 
 /* Menu de navegación */
 
-nav img  {
-    height: 70px; 
-    width: auto; 
+nav img {
+    height: 40px;
+    width: auto;
 }
 
+nav li {
+    /* border: 1px solid red; */
+    width: auto;
+    padding: 10px 10px 0px 0px;
+}
 
 /* Footer */
-#footer img  {
-    height: 40px; 
-    width: auto; 
+#footer img {
+    height: 40px;
+    /* width: auto;  */
 }
 
 #footer-redes img {
     padding: 0px 10px 0px 10px;
-    border-right: 1px solid rgb(255, 255, 255); 
+    border-right: 1px solid rgb(255, 255, 255);
 }
 
 #footer-redes img:hover {
-    background-color: var(--color-secundario) ;
+    background-color: var(--color-secundario);
 }
 
+
+
+
+.icon-dropdown {
+    width: 0.8rem;
+    height: 0.8rem;
+    /* margin-left: 0.5rem;  */
+    transition: transform 0.3s ease;
+    fill: currentColor;
+    flex-shrink: 0;
+    /* margin-right: 10px; */
+    /* border: 1px solid #81039b; */
+    background-color: 1px solid #f3f4f6;
+}
+
+
+
+/* Cambios solo para móvil/responsivo */
+@media (max-width: 1023px) {
+
+    #navbar-menu ul li>ul {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent;
+        transition: background 0.2s ease;
+        font-size: 14px;
+    }
+
+    #navbar-menu ul li>ul>li:hover {
+        background: #6a7282;
+        color: white !important;
+    }
+
+    #navbar-menu ul li>ul>li:hover a {
+        color: white !important;
+    }
+
+    .icon-dropdown {
+        width: 0.625rem;
+        /* 10px */
+        height: 0.625rem;
+        /* 10px */
+    }
+
+    #navbar-menu ul li {
+        /* border: 1px solid red; */
+        padding: 20px;
+        border-bottom: 1px solid #f3f4f6;
+        z-index: 10;
+        font-size: 15px;
+    }
+
+}
+
+/* Solo aplica en desktop */
+@media (min-width: 1024px) {
+    nav>ul>li {
+        max-width: 150px;
+        height: 70px;
+        margin: 0px 0px 5px 10px;
+        /* border: 1px solid #f3f4f6; */
+        /* border: 1px solid #81039b; */
+        padding: 5px;
+
+
+    }
+
+    nav>ul>li>a {
+        /* width: 150px;
+        height: 70px;
+        margin: 0px 0px 5px 10px; */
+        /* border: 1px solid #f3f4f6; */
+        /* border: 1px solid #9b0324; */
+        /* padding: 5px; */
+    }
+
+    nav>ul>li>ul>li {
+        width: auto;
+        border-bottom: 1px solid #f3f4f6;
+    }
+}
