@@ -14,4 +14,6 @@ export default ({ env }) => ({
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
+  url : env('PUBLIC_URL', 'https://infogred_qa.cali.gov.co/cms'),
+  serveAdminPanel : true,
 });
