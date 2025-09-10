@@ -24,5 +24,4 @@
     ENV PORT=1337
     COPY --from=build /opt/app/server ./
     EXPOSE 1337
-    EXPOSE 4321
     CMD ["yarn", "start"]
