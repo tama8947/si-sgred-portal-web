@@ -18,7 +18,8 @@
     "@types/node": "^22.5.2",
     "concurrently": "^8.2.2",
     "typescript": "^5.0.0",
-    "wait-on": "^8.0.1"
+    "wait-on": "^8.0.1",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "ts-node": "^10.9.2"

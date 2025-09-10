@@ -4,4 +4,6 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
+  url: process.env.NODE_ENV === 'development' ? undefined : env('PUBLIC_URL', 'https://infogred_qa.cali.gov.co/cms'),
+  proxy : { enabled: true, ssl: true },
 });
