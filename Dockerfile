@@ -12,6 +12,7 @@
     COPY --from=deps /opt/app/server/node_modules ./node_modules
     COPY server/ ./
     ENV NODE_ENV=production
+    #RUN yarn seed
     RUN yarn build
     
     # --- runner ---
@@ -24,4 +25,5 @@
     ENV PORT=1337
     COPY --from=build /opt/app/server ./
     EXPOSE 1337
+    EXPOSE 4321
     CMD ["yarn", "start"]
