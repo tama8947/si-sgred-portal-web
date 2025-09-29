@@ -118,3 +118,14 @@ Socials:
 
 [YouTube](https://www.youtube.com/@CodingAfterThirty)
 [X](https://x.com/codingthirty)
+
+
+
+yarn build        # Construir aplicaciones
+yarn prod:script  # Ejecutar en producción
+
+# Desarrollo
+docker compose up --build
+
+# Producción (con Nginx)
+docker compose -f docker-compose.prod.yml up --build
