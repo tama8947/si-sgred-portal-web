@@ -20,6 +20,9 @@ export default {
     // Configurar permisos públicos para el content type global
     await configurePublicPermissions(strapi);
 
+    // Crear contenido global si no existe
+    await ensureGlobalContent(strapi);
+
     // Ejemplo: upsert por slug en un Content Type "category"
     const UID = 'api::category-document.category-document';
 
@@ -94,5 +97,43 @@ async function configurePublicPermissions(strapi) {
     }
   } catch (error) {
     strapi.log.error('Error configurando permisos públicos:', error);
+  }
+}
+
+async function ensureGlobalContent(strapi) {
+  try {
+    const globalUID = 'api::global.global';
+    
+    if (!strapi.contentTypes[globalUID]) {
+      strapi.log.warn('Content type global no encontrado');
+      return;
+    }
+
+    // Verificar si ya existe contenido global
+    const existingGlobal = await strapi.entityService.findMany(globalUID, {
+      publicationState: 'live',
+    });
+
+    if (!existingGlobal || (Array.isArray(existingGlobal) && existingGlobal.length === 0)) {
+      // Crear contenido global por defecto
+      const defaultGlobalData = {
+        title: 'Global',
+        description: 'Page responsible for call out, header, and footer data.',
+        banner: null,
+        header: null,
+        footer: null,
+        publishedAt: new Date(),
+      };
+
+      const createdGlobal = await strapi.entityService.create(globalUID, {
+        data: defaultGlobalData,
+      });
+
+      strapi.log.info('Contenido global creado automáticamente:', createdGlobal.id);
+    } else {
+      strapi.log.info('Contenido global ya existe');
+    }
+  } catch (error) {
+    strapi.log.error('Error creando contenido global:', error);
   }
 }
