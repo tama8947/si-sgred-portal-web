@@ -24,6 +24,33 @@ body {
     background-color: var(--color-primario) !important;
 }
 
+main {
+    /* border: 1px solid red; */
+    padding: 0%;
+
+}
+
+article {
+    max-width:70%;
+    /* border: 1px solid rgb(0, 38, 255) !important */
+}
+
+/* tablas */
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Para que los bordes se unan */
+}
+
+table, th, td {
+  border: 1px solid #000; /* Borde para toda la tabla y celdas */
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
 
 /* Menu de navegación */
 
