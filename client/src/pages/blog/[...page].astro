@@ -96,39 +96,38 @@ const totalPages = Math.ceil(page.total / page.size);
           </a>
 
           <div class="flex flex-wrap w-full lg:w-1/2">
-            {
-              articles.slice(1).map((article: any) => (
-                <a href={`/blog/${article.props.slug}`} class="mb-6 w-full lg:w-1/2 px-3">
-                  <div class="rounded overflow-hidden shadow">
-                    
-                    <StrapiImage
-                      class="lg:h-48 rounded-t"
-                      src={article.props.featuredImage.url}
-                      alt={article.props.featuredImage.alternativeText}
-                      height={400}
-                      width={400}
+  {
+    articles.slice(1).map((article: any) => (
+      <a href={`/blog/${article.props.slug}`} class="mb-6 w-full lg:w-1/2 px-3">
+        <div class="rounded overflow-hidden shadow w-full">
+          
+          <!-- Contenedor con proporción fija -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden">
+            <StrapiImage
+              class="object-cover w-full h-full rounded-t"
+              src={article.props.featuredImage.url}
+              alt={article.props.featuredImage.alternativeText}
+              height={400} width={400}
+            />
+          </div>
 
-                    
-                    />
-                    <div class="p-6 rounded-b bg-white">
-                      <span class="text-sm text-gray-400">
-                        {formatDate(article.props.publishedAt)}
-                      </span>
-                      <h2 class="my-2 text-2xl font-bold">
-                        {article.props.title}
-                      </h2>
-                      <span
-                        class="text-blue-900 hover:text-blue-800 font-bold hover:underline"
-                      >
-                        Leer más
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              ))
-            }
+          <div class="p-6 rounded-b bg-white">
+            <span class="text-sm text-gray-400">
+              {formatDate(article.props.publishedAt)}
+            </span>
+            <h2 class="my-2 text-2xl font-bold">
+              {article.props.title}
+            </h2>
+            <span class="text-blue-900 hover:text-blue-800 font-bold hover:underline">
+              Leer más
+            </span>
           </div>
         </div>
+      </a>
+    ))
+  }
+</div>
+
         <Pagination
           previousPage={page.url.prev ? page.url.prev : null}
           nextPage={page.url.next ? page.url.next : null}

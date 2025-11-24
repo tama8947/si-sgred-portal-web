@@ -51,6 +51,28 @@ th, td {
   text-align: left;
 }
 
+/* Viñetas sublistas */
+.custom-sublist {
+  list-style: none;
+  padding-left: 30px;
+  margin: 10px 0;
+}
+
+.custom-sublist li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.custom-sublist li:before {
+  content: "○"; /* Círculo vacío */
+  position: absolute;
+  left: 0;
+  color: #000000; /* Usando el color de tu tema */
+  font-size: 0.9em;
+  top: 0.1em;
+}
 
 /* Menu de navegación */
 
